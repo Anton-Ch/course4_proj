@@ -80,6 +80,7 @@ class Dev(Configuration):
         'django.contrib.staticfiles',
         # created app for movies
         'movies',
+        'django_celery_results',
     ]
 
     MIDDLEWARE = [
@@ -169,4 +170,11 @@ class Dev(Configuration):
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-    OMDB_KEY = "place here your key ;) "
+    OMDB_KEY = "key placeholder"
+
+    # Celery will read settings with the "CELERY_" prefix.
+    # Broker (queue) → Redis on localhost DB 0
+    CELERY_BROKER_URL = "redis://localhost:6379/0"
+
+    # Result backend → Django DB via django-celery-results
+    CELERY_RESULT_BACKEND = "django-db"
