@@ -170,7 +170,7 @@ class Dev(Configuration):
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-    OMDB_KEY = "key placeholder"
+    OMDB_KEY = "key placeholder"    
 
     # Celery will read settings with the "CELERY_" prefix.
     # Broker (queue) → Redis on localhost DB 0
@@ -178,3 +178,9 @@ class Dev(Configuration):
 
     # Result backend → Django DB via django-celery-results
     CELERY_RESULT_BACKEND = "django-db"
+
+    # Print all outgoing emails to the console
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+    # Dummy admin info (real emails not required for testing)
+    ADMINS = [("Ben", "ben@example.com")]

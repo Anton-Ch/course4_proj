@@ -3,6 +3,9 @@
 from celery import shared_task
 from movies import omdb_integration
 
+from celery import shared_task
+from django.core.mail import mail_admins
+
 @shared_task
 def search_and_save(search: str):
     """
@@ -11,3 +14,14 @@ def search_and_save(search: str):
     - Safe to be called via .delay() from views
     """
     return omdb_integration.search_and_save(search)
+
+@shared_task
+def notify_of_new_search_term(search_term: str):
+    """
+    Background Celery task that sends an email to site admins
+    whenever a new search term is created.
+    """
+    mail_admins(
+        subject="New Search Term",
+        message=f"A new search term was used: '{search_term}'"
+    )
