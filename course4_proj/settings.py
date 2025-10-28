@@ -81,6 +81,7 @@ class Dev(Configuration):
         # created app for movies
         'movies',
         'django_celery_results',
+        'django_celery_beat',
     ]
 
     MIDDLEWARE = [
@@ -170,7 +171,7 @@ class Dev(Configuration):
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-    OMDB_KEY = "key placeholder"    
+    OMDB_KEY = "key placeholder"
 
     # Celery will read settings with the "CELERY_" prefix.
     # Broker (queue) → Redis on localhost DB 0
